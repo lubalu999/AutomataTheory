@@ -1,0 +1,6 @@
+value main(){
+value a=2;
+value b=a*8;
+a=(b+a/10)*10%15;
+const value c=10;
+}
