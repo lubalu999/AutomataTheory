@@ -1,0 +1,25 @@
+Number of strings: 10000
+Analyzing with Regex completed in 0.03697991371154785 seconds
+Analyzing with SMC completed in 0.7326030731201172 seconds
+Analyzing with PLY completed in 0.39977192878723145 seconds
+Number of strings: 10000
+Analyzing with Regex completed in 0.05499100685119629 seconds
+Analyzing with SMC completed in 2.002854824066162 seconds
+Analyzing with PLY completed in 0.5046877861022949 seconds
+Number of strings: 10000
+Analyzing with Regex completed in 0.09894227981567383 seconds
+Number of strings: 10000
+Analyzing with Regex completed in 0.1099555492401123 seconds
+Analyzing with SMC completed in 2.5545573234558105 seconds
+Analyzing with PLY completed in 0.7191987037658691 seconds
+Number of strings: 10000
+Analyzing with Regex completed in 0.08395171165466309 seconds
+Analyzing with SMC completed in 2.4086215496063232 seconds
+Analyzing with PLY completed in 0.6926026344299316 seconds
+Number of strings: 200
+Number of strings: 200
+Number of strings: 1000
+Number of strings: 1000
+Number of strings: 200
+Number of strings: 1000
+Number of strings: 10000

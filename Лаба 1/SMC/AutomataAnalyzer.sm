@@ -1,0 +1,99 @@
+%class AutomataAnalyzer
+%start MainMap::Start
+
+%map MainMap
+%%
+Default {
+	Start			Start		{ ClearSMC(); }
+	Letter (ch: String)	Error		{ Unacceptable(); }
+	Digit (ch: String)	Error		{ Unacceptable(); }
+	ZeroS (ch: String)	Error		{ Unacceptable(); }
+	SqBracket1S		Error		{ Unacceptable(); }
+	SqBracket2S		Error		{ Unacceptable(); }
+	EqualS			Error		{ Unacceptable(); }
+	Brace1S			Error		{ Unacceptable(); }
+	Brace2S			Error		{ Unacceptable(); }
+	SpaceS			Error		{ Unacceptable(); }
+	MinusS			Error		{ Unacceptable(); }
+	CommaS			Error		{ Unacceptable(); }
+	Unknown			Error		{ Unacceptable(); }
+}
+
+Start {
+	EOS			Error		{ Unacceptable(); }
+	SpaceS			Start		{}
+	Letter (ch: String)	Type		{ InsToBuf(ch); }
+}
+
+Name {
+	Letter (ch: String) [ctxt.LessThan16()]		nil		{ InsToBuf(ch); IncLength(); }
+	Digit (ch: String) [ctxt.LessThan16()]		nil		{ InsToBuf(ch); IncLength(); }
+	ZeroS (ch: String) [ctxt.LessThan16()]		nil		{ InsToBuf(ch); IncLength(); }
+	SqBracket1S					SqBracket1	{ InsName(); ClearBuf(); ZeroLength(); }
+}
+
+SqBracket1 {
+	ZeroS (ch: String) 	Zero		{ InsToBuf(ch); IncLength(); }
+	Digit (ch: String) 	ElemNum		{ InsToBuf(ch); IncLength(); }
+	SqBracket2S		SqBracket2	{ ZeroLength(); }
+}
+
+Zero {
+	Digit (ch: String) [ctxt.LessThan9()] 		ElemNum		{ InsToBuf(ch); IncLength(); }
+	ZeroS (ch: String) [ctxt.LessThan9()]		nil		{ InsToBuf(ch); IncLength(); }
+}
+
+ElemNum {
+	Digit (ch: String) [ctxt.LessThan9()] 		nil		{ InsToBuf(ch); IncLength(); }
+	ZeroS (ch: String) [ctxt.LessThan9()]		nil		{ InsToBuf(ch); IncLength(); }
+	SqBracket2S					SqBracket2	{ InsElemNum(); ClearBuf(); ZeroLength(); }
+}
+
+SqBracket2 {
+	EqualS			Equal		{}
+	SpaceS			SqBracket2	{}
+}
+
+Equal {
+	Brace1S			Brace1		{}
+	SpaceS			Equal		{}
+}
+
+Brace1 {
+	SpaceS					Brace1		{}
+	MinusS					Number		{ IncLength(); }
+	ZeroS (ch: String)			Number		{ IncLength(); }
+	Digit (ch: String)			Number		{ IncLength(); }
+	Brace2S [ctxt.CheckLength()]		Brace2		{}
+}
+
+Number {
+	Digit (ch: String)			Number		{}
+	ZeroS (ch: String)			Number		{}
+	CommaS					Comma		{}
+	Brace2S [ctxt.CheckLength()]		Brace2		{ ZeroLength(); }
+}
+Comma {
+	SpaceS					Comma		{}
+	Digit (ch:String)			Number		{ IncLength(); }
+	ZeroS (ch: String)			Number		{ IncLength(); }
+	MinusS					Number		{ IncLength(); }
+}
+
+Brace2 {
+	SpaceS					Brace2		{}
+	EOS					OK		{ Acceptable(); }
+}
+
+Error {
+
+    EOS         nil             { Unacceptable(); }
+
+}
+
+OK {
+
+    EOS         nil             { Acceptable(); }
+
+}
+%%
