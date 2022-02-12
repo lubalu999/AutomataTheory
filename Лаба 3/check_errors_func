@@ -1,0 +1,14 @@
+value main(value a){
+    notzero? (a!=0){
+        return a*factorial(a-1);
+    }
+    zero? (a){
+        return 1;
+        }
+}
+
+value main(){
+	value a=5;
+	a=factorial(a);
+	return 1;
+}

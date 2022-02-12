@@ -1,0 +1,33 @@
+value main(){
+array of a;
+a[0]=1;
+a[1]=2;
+a[2]=3;
+value i=3;
+while (i!=4){
+a[i]=i+0;
+i=i+1;
+}
+array of array of b;
+b[0]=a;
+a[1]=b[0][1];
+b[1][0]=5;
+b[1][1]=6;
+array of array of array of d;
+d[0][0]=a;
+d[1]=b;
+d[2][0][0]=10;
+array of pointer pp;
+pointer array of dd;
+dd=&a;
+pp[0]=dd;
+array of pointer array of array of xd;
+xd[0]=&b;
+value c=a[0]*b[0][1]%b[1][1];
+
+const array of n=3;
+n[0]=1;
+n[1]=2;
+n[2]=3;
+
+}

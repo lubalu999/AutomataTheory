@@ -1,0 +1,23 @@
+value main(){
+pointer a;
+value b=5;
+a=&b;
+value c=*a;
+
+pointer array of d;
+array of aa;
+aa[0]=1;
+aa[1]=2;
+aa[2]=3;
+d=&aa;
+value m=*(d+1);
+*(d+1)=aa[2];
+
+pointer pointer f;
+f=&a;
+*(a)=4;
+const pointer const cpoint=&b;
+pointer const aaa;
+aaa=a;
+
+}

@@ -1,0 +1,71 @@
+value algorithm(pointer array of a,value i){
+teleport;
+value p=*(a+i);
+i=i-1;
+ notzero? (p!=2){
+       notzero? (left){
+        i=i+1;
+        portal;
+        *(a+i)=0;
+        right;
+    }
+}
+notzero? (p!=3){
+    notzero? (top){
+        i=i+1;
+        portal;
+        *(a+i)=1;
+        bottom;
+    }
+}
+ notzero? (p!=0){
+    notzero? (right){
+        i=i+1;
+        portal;
+        *(a+i)=2;
+        left;
+    }
+}
+notzero? (p!=1){
+    notzero? (bottom){
+        i=i+1;
+        portal;
+        *(a+i)=3;
+        top;
+    }
+}
+return algorithm(a,i);
+}
+value main(){
+array of a;
+value i=0;
+i=i-1;
+notzero? (left){
+i=i+1;
+a[i]=0;
+portal;
+right;
+}
+notzero? (top){
+i=i+1;
+a[i]=1;
+portal;
+bottom;
+}
+notzero? (right){
+i=i+1;
+a[i]=2;
+portal;
+left;
+}
+notzero? (bottom){
+i=i+1;
+a[i]=3;
+portal;
+top;
+}
+pointer array of p;
+p=&a;
+i=algorithm(p,i);
+return 1;
+}
